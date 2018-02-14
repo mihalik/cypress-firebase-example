@@ -1,0 +1,17 @@
+{
+  "name": "cypress-firebase",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "serve",
+    "cypress": "cypress open"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^1.4.2",
+    "prettier": "^1.10.2",
+    "serve": "^6.4.9"
+  }
+}
