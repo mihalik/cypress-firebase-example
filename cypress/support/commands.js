@@ -24,21 +24,11 @@
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-Cypress.Commands.add("getLoginToken", (email, password) => {
+Cypress.Commands.add("login", (email, password) => {
   cy.visit("/").then(win => {
     cy.get("input[name=email]").type("test@example.com");
     cy.get("input[name=password]").type("Password1");
     cy.get("button[name=login]").click();
-    return cy
-      .get("#user")
-      .should("be.visible")
-      .then(() => {
-        const key = Object.keys(win.localStorage).filter(item =>
-          item.startsWith("firebase:authUser")
-        )[0];
-        const obj = {key, value: win.localStorage.getItem(key)};
-        console.log(obj);
-        return obj;
-      });
+    cy.get("#user").should("be.visible");
   });
 });

@@ -68,17 +68,9 @@ describe("Firebase & Authentication example", function() {
   });
 
   context("Notes tests", function() {
-    before(function() {
-      cy.getLoginToken("test@example.com", "Password1").as("loginToken");
-    });
-
-    beforeEach(function() {
-      console.log(this);
-      cy.visit("/", {
-        onBeforeLoad: function(win) {
-          win.localStorage.setItem(this.loginToken.key, this.loginToken.value);
-        },
-      });
+    beforeEach(() => {
+      cy.login("test@example.com", "Password1");
+      cy.visit("/");
     });
 
     it("able to type in the note field", () => {
@@ -87,30 +79,19 @@ describe("Firebase & Authentication example", function() {
       cy.get("input[name=note]").type(note);
     });
 
-    // it("saving a note stores the value", () => {
-    //   // Fill out login form
-    //   const note = uuid();
-    //   cy.get("input[name=note]").type(note);
-    //   cy.get("button[name=add]").click();
-    //   cy.get("#notes").contains(note);
-    // });
+    it("saving a note stores the value", () => {
+      // Fill out login form
+      const note = uuid();
+      cy.get("input[name=note]").type(note);
+      cy.get("button[name=add]").click();
+      cy.get("#notes").contains(note);
+    });
   });
 
   context("Logout tests", function() {
-    before(() => {
-      // Fill out login form
-      cy.getLoginToken("test@example.com", "Password1").as("loginToken");
-    });
-
     beforeEach(() => {
-      cy.get("@loginToken").then(token => {
-        console.log(token);
-        cy.visit("/", {
-          onBeforeLoad: win => {
-            win.localStorage.setItem(token.key, token.value);
-          },
-        });
-      });
+      cy.login("test@example.com", "Password1");
+      cy.visit("/");
     });
 
     it("hides content and shows login when logged out", () => {
