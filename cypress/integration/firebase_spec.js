@@ -2,7 +2,8 @@
 //
 // * Logging in with a firebase uesr
 // * Testing errors around login
-// * Bypass login to test the notes functionality quickly
+// * Saving data and verifying it shows up on the page
+// * Logout
 //
 // Be sure to run `npm start` to start the server
 // before running the tests below.
@@ -70,7 +71,6 @@ describe("Firebase & Authentication example", function() {
   context("Notes tests", function() {
     beforeEach(() => {
       cy.login("test@example.com", "Password1");
-      cy.visit("/");
     });
 
     it("able to type in the note field", () => {
@@ -91,17 +91,9 @@ describe("Firebase & Authentication example", function() {
   context("Logout tests", function() {
     beforeEach(() => {
       cy.login("test@example.com", "Password1");
-      cy.visit("/");
     });
 
     it("hides content and shows login when logged out", () => {
-      cy.get("#user").should("be.visible");
-      cy.get("button[name=logout]").click();
-      cy.get("#user").should("not.exist");
-      cy.get("button[name=login]").should("exist");
-    });
-
-    it("2hides content and shows login when logged out", () => {
       cy.get("#user").should("be.visible");
       cy.get("button[name=logout]").click();
       cy.get("#user").should("not.exist");
