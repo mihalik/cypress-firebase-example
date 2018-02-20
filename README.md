@@ -27,4 +27,4 @@ This will run Cypress and load the tests.
 
 The current implementation uses a [login command](./cypress/support/commands.js) to login before each test using `beforeEach`. Ideally this would bypass automating the login form to improve test speed.
 
-Due to some issues with long-polling (used by Firebase) and using a single-page application with Cypress ([761](https://github.com/cypress-io/cypress/issues/761)), these tests use a blank.html page after each test to clear out any lingering XHR requests.
+Due to some issues with long-polling (used by Firebase) and using a single-page application with Cypress ([#761](https://github.com/cypress-io/cypress/issues/761)), these tests use a blank.html page after each test to clear out any lingering XHR requests.
