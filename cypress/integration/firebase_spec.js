@@ -22,6 +22,10 @@ describe("Firebase & Authentication example", function() {
       cy.visit("/");
     });
 
+    afterEach(function() {
+      cy.visit("blank.html");
+    });
+
     it("logs in with the correct username and password", () => {
       // Fill out login form
       cy.get("input[name=email]").type("test@example.com");
@@ -73,6 +77,10 @@ describe("Firebase & Authentication example", function() {
       cy.login("test@example.com", "Password1");
     });
 
+    afterEach(function() {
+      cy.visit("blank.html");
+    });
+
     it("able to type in the note field", () => {
       // Fill out login form
       const note = uuid();
@@ -91,6 +99,10 @@ describe("Firebase & Authentication example", function() {
   context("Logout tests", function() {
     beforeEach(() => {
       cy.login("test@example.com", "Password1");
+    });
+
+    afterEach(function() {
+      cy.visit("blank.html");
     });
 
     it("hides content and shows login when logged out", () => {
