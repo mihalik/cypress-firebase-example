@@ -7,7 +7,7 @@ This repo contains a simple React appliction connected to Firebase. It uses Fire
 ### 1. Clone the repo, install
 
 ```
-git clone git@github.com:mihalik/cypress-firebase.git
+git clone git@github.com:mihalik/cypress-firebase-example.git
 npm install
 ```
 
